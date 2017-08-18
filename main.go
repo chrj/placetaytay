@@ -13,7 +13,7 @@ import (
 	"strconv"
 	"sync"
 
-	"bitbucket.org/chrj/placetaytay/taytay"
+	"github.com/chrj/placetaytay/taytay"
 
 	"github.com/disintegration/imaging"
 	"github.com/gorilla/mux"
