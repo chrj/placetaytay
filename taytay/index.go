@@ -137,7 +137,7 @@ func Index(path string) error {
 	for _, fi := range files {
 
 		if err := load(filepath.Join(path, fi.Name())); err != nil {
-			log.Printf("error opening image: %v:", fi.Name(), err)
+			log.Printf("error opening image %v: %v", fi.Name(), err)
 			continue
 		}
 
