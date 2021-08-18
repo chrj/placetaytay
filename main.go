@@ -27,7 +27,7 @@ func main() {
 
 	var err error
 
-	if err = taytay.Index("/home/razor/taytay"); err != nil {
+	if err = taytay.Index("taytay"); err != nil {
 		log.Fatalf("couldn't index pictures: %v", err)
 	}
 
@@ -40,6 +40,7 @@ func main() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", AboutHandler)
+	r.PathPrefix("/.well-known/").Handler(http.StripPrefix("/.well-known/", http.FileServer(http.Dir("taytay/.well-known"))))
 	r.HandleFunc("/random", RandomHandler)
 	r.HandleFunc("/{width:[0-9]+}x{height:[0-9]+}", ImageHandler)
 
@@ -115,7 +116,7 @@ func ImageHandler(rw http.ResponseWriter, req *http.Request) {
 	cacheLock.Lock()
 
 	cacheFilename := filepath.Join(
-		"/home/razor/taytay/",
+		"taytay",
 		"cache",
 		fmt.Sprintf("%dx%d.png", width, height),
 	)
